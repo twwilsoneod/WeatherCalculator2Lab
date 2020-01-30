@@ -20,18 +20,45 @@ namespace WeatherCalculator2
 
             temperature = int.Parse(input);
 
-            // Get the windspeed from the user
-            Console.WriteLine("Enter the wind speed");
+            //selection switch between heat index and wind chill
 
-            input = Console.ReadLine();
+            if (temperature > 50)
+            {
 
-            windSpeed = int.Parse(input);
+                //Get realative humidity from user
 
-            // Calculate the wind chill
+                Console.WriteLine("Enter the Relative Humidity");
 
-            windChill = 35.74 + (0.6125 * temperature) - 35.75 * Math.Pow(windSpeed, 0.16) + 0.4275 * temperature * Math.Pow(windSpeed, 0.16);
+                int relativeHimidty = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("The wind chill is " + windChill);
+                //Calculate heat index
+
+                decimal heatIndex = .5m * (temperature + 61.0m +
+                                            ((temperature - 68.0m) * 1.2m) +
+                                            (relativeHimidty * 0.094m));
+
+                Console.WriteLine("Heat Index is " + heatIndex);
+
+            }
+            else
+            {
+                // Get the windspeed from the user
+                Console.WriteLine("Enter the wind speed");
+
+                input = Console.ReadLine();
+
+                windSpeed = int.Parse(input);
+
+                // Calculate the wind chill
+
+                windChill = 35.74 + (0.6125 * temperature)
+                            - 35.75 * Math.Pow(windSpeed, 0.16)
+                            + 0.4275 * temperature * Math.Pow(windSpeed, 0.16);
+
+                Console.WriteLine("The wind chill is " + windChill);
+            }
+
+            
         }
     }
 }
